@@ -12,7 +12,7 @@
             <form string="Animal">
                 <sheet>
                     <group>
-                        <field name="name" domain="[('concatenated_name', '=', name), ('owner_id', '=', owner_id)]"/>
+                        <field name="name"/>
                         <field name="image" widget="image" style="max-width: 100px;"/>
                     </group>
                     <group>

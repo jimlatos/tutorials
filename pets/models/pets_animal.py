@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import models, fields, api, exceptions
 
 class PetsAnimal(models.Model):
     _name = "pets.animal"
@@ -17,7 +17,7 @@ class PetsAnimal(models.Model):
     notes = fields.Text()
     active = fields.Boolean(default=True)
 
-    concatenated_name = fields.Char(compute="_compute_concatenated_name")
+    unique_name = fields.Char(compute="_compute_unique_name", store=True)
 
     
     def action_show_feeding_records(self):
@@ -42,12 +42,12 @@ class PetsAnimal(models.Model):
             weight_record = record.weight_ids.sorted(key=lambda r: r.date, reverse=True)
             record.weight = weight_record[0].weight if weight_record else 0
 
-    @api.constraints("species_id")
-    def _check_species_id(self):
-        if not self.species_id:
-            raise ValidationError("Species is required")
-        
     @api.depends('name', 'owner_id')
-    def _compute_concatenated_name(self):
+    def _compute_unique_name(self):
         for record in self:
-            record.concatenated_name = f"{record.name}-{record.owner_id.name}"
+            record.unique_name = f'{record.name}-{record.owner_id.id}'
+
+    @api.constrains('unique_name')
+    def _check_unique_name(self):
+        if self.unique_name and not self.env['pets.animal'].search([['unique_name', '=', self.unique_name]]):
+            raise exceptions.ValidationError("This name is already taken by another pet of this owner.")
