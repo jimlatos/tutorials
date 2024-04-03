@@ -1,0 +1,6 @@
+<odoo>
+    <menuitem id="menu_estate" name="Estate" sequence="20"/>
+        <menuitem id="menu_estate_level1" name="Estate" parent="menu_estate" sequence="10"/>
+            <menuitem id="menu_estate_property" name="Properties" parent="menu_estate_level1" action="estate_action" sequence="10"/>
+
+</odoo>

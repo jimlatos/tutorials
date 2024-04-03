@@ -1,0 +1,42 @@
+<odoo>
+    <record id="feeding_action" model="ir.actions.act_window">
+        <field name="name">Feeding Records</field>
+        <field name="res_model">pets.feeding</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="feeding_view_tree" model="ir.ui.view">
+        <field name="name">pets.feeding.tree</field>
+        <field name="model">pets.feeding</field>
+        <field name="arch" type="xml">
+            <tree string="Feeding Records View">
+                <field name="date"/>
+                <field name="time"/>
+                <field name="animal_id" string="Animal Name"/>
+                <field name="meal"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="feeding_view_form" model="ir.ui.view">
+        <field name="name">pets.feeding.form</field>
+        <field name="model">pets.feeding</field>
+        <field name="arch" type="xml">
+            <form string="Feeding Record">
+                <sheet>
+                    <group>
+                        <field name="date"/>
+                        <field name="time"/>
+                    </group>
+                    <group>
+                        <field name="animal_id"/>
+                        <field name="meal"/>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

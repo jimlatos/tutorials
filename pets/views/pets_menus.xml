@@ -1,0 +1,9 @@
+<odoo>
+    <menuitem id="menu_pets" name="Pets" sequence="10" web_icon="pets,static/description/icon.png"/>
+        <menuitem id="menu_pets_pets" name="Pets" parent="menu_pets" sequence="10"/>
+            <menuitem id="menu_pets_animals" name="Animals" parent="menu_pets_pets" action="animal_action" sequence="10"/>
+            <menuitem id="menu_pets_species" name="Species" parent="menu_pets_pets" action="species_action" sequence="20"/>
+        <menuitem id="menu_pets_records" name="Records" parent="menu_pets" sequence="20"/>
+            <menuitem id="menu_pets_feeding" name="Feeding" parent="menu_pets_records" action="feeding_action" sequence="10"/>
+            <menuitem id="menu_pets_weight" name="Weight" parent="menu_pets_records" action="weight_action" sequence="20"/>
+</odoo>

@@ -1,0 +1,50 @@
+<odoo>
+    <record id="animal_action" model="ir.actions.act_window">
+        <field name="name">Animals</field>
+        <field name="res_model">pets.animal</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="animal_view_form" model="ir.ui.view">
+        <field name="name">pets.animal.form</field>
+        <field name="model">pets.animal</field>
+        <field name="arch" type="xml">
+            <form string="Animal">
+                <sheet>
+                    <group>
+                        <field name="name" domain="[('concatenated_name', '=', name), ('owner_id', '=', owner_id)]"/>
+                        <field name="image" widget="image" style="max-width: 100px;"/>
+                    </group>
+                    <group>
+                        <field name="birth_date"/>
+                        <field name="age"/>
+                        <field name="weight"/>
+                    </group>
+                    <group>
+                        <field name="species_id"/>
+                        <field name="owner_id"/>
+                        <field name="notes"/>
+                        <field name="active"/>
+                    </group>
+                    <div>
+                        <button name="action_show_feeding_records" string="Show Feeding Records" type="object"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="animal_view_tree" model="ir.ui.view">
+        <field name="name">pets.animal.tree</field>
+        <field name="model">pets.animal</field>
+        <field name="arch" type="xml">
+            <tree string="Animals">
+                <field name="name"/>
+                <field name="age"/>
+                <field name="weight" string="Weight"/>
+                <field name="species_name" string="Species"/>
+                <field name="owner_name" string="Owner"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
