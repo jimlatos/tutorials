@@ -16,8 +16,7 @@ class PetsAnimal(models.Model):
     weight = fields.Float(compute="_compute_weight")
     notes = fields.Text()
     active = fields.Boolean(default=True)
-
-    unique_name = fields.Char(compute="_compute_unique_name", store=True)
+    unique_name = fields.Char(compute="_compute_unique_name", store=True, unique=True)
 
     
     def action_show_feeding_records(self):
@@ -45,9 +44,15 @@ class PetsAnimal(models.Model):
     @api.depends('name', 'owner_id')
     def _compute_unique_name(self):
         for record in self:
-            record.unique_name = f'{record.name}-{record.owner_id.id}'
+            if record.name and record.owner_id:
+                record.unique_name = f'{record.name}-{record.owner_id.id}'
+            else:
+                record.unique_name = ''
 
     @api.constrains('unique_name')
     def _check_unique_name(self):
-        if self.unique_name and not self.env['pets.animal'].search([['unique_name', '=', self.unique_name]]):
-            raise exceptions.ValidationError("This name is already taken by another pet of this owner.")
+        for record in self:
+            if record.unique_name and not self.env['pets.animal'].search([['unique_name', '=', record.unique_name]]):
+                raise exceptions.ValidationError("This name is already taken by another pet of this owner.")
+            elif not record.unique_name and record.name and record.owner_id:
+                raise exceptions.ValidationError("The unique name field must be set for records with a name and an owner.")
