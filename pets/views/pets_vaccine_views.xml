@@ -1,0 +1,46 @@
+<odoo>
+    <record id="vaccine_action" model="ir.actions.act_window">
+        <field name="name">Vaccine Records</field>
+        <field name="res_model">pets.vaccine</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="vaccine_view_tree" model="ir.ui.view">
+        <field name="name">pets.vaccine.tree</field>
+        <field name="model">pets.vaccine</field>
+        <field name="arch" type="xml">
+            <tree string="Vaccine Records View">
+                <field name="date"/>
+                <field name="expiration_date"/>
+                <field name="animal_id" string="Animal Name"/>
+                <field name="name"/>
+                <field name="notes"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="vaccine_view_form" model="ir.ui.view">
+        <field name="name">pets.vaccine.form</field>
+        <field name="model">pets.vaccine</field>
+        <field name="arch" type="xml">
+            <form string="Vaccine Record">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="valid, expired"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="date"/>
+                        <field name="expiration_date"/>
+                    </group>
+                    <group>
+                        <field name="animal_id"/>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

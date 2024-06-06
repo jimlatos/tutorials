@@ -29,6 +29,18 @@
                     <div>
                         <button name="action_show_feeding_records" string="Show Feeding Records" type="object"/>
                     </div>
+                    <div>
+                        <hr style="border-top: 1px solid #000; margin: 10px 0;"/>
+                        <label for="vaccine_ids" string="Vaccine Records:" style="font-weight: bold;"/>
+                    </div>
+                    <field name="vaccine_ids" widget="one2many_list">
+                        <tree string="Vaccine Records">
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="expiration_date"/>
+                            <field name="status"/>
+                        </tree>
+                    </field>
                 </sheet>
             </form>
         </field>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_animal_weight">
+        <t t-foreach="docs" t-as="animal">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>
+                            <span t-field="animal.name"/>
+                        </h2>
+                        <div>
+                            <strong>Current Weight: </strong>
+                            <span t-field="animal.weight"/>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Weight</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="animal.weight_ids.sorted(key=lambda r: r.date, reverse=True)" t-as="weight">
+                                    <tr>
+                                        <td>
+                                            <span t-field="weight.date"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="weight.weight"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

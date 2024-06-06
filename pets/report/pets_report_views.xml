@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_animal_weight" model="ir.actions.report">
+            <field name="name">Animal Weight Report</field>
+            <field name="model">pets.animal</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">pets.report_animal_weight</field>
+            <field name="report_file">pets.report_animal_weight</field>
+            <field name="binding_model_id" ref="model_pets_animal"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

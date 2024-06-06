@@ -19,7 +19,10 @@
         'views/pets_species_views.xml',
         'views/pets_feeding_views.xml',
         'views/pets_weight_views.xml',
+        'views/pets_vaccine_views.xml',
         'views/pets_menus.xml',
+        'report/pets_reports.xml',
+        'report/pets_report_views.xml',
     ],
     'application': True,
 }
